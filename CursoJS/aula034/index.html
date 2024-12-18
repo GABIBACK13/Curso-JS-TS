@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array and Object</title>
+</head>
+<body>
+    <main>
+        <form action="" method="get" class="form">
+            <p>
+                <label for="inome">Nome: </label>
+                <input type="text" name="nome" id="inome" required>
+            </p>
+            <p>
+                <label for="isobrenome">Sobrenome: </label>
+                <input type="text" name="sobrenome" id="isobrenome" required>
+            </p>
+            <p>
+                <label for="ipeso">Peso: </label>
+                <input type="number" name="peso" id="ipeso" required>
+            </p>
+            <p>
+                <label for="iidade">Idade: </label>
+                <input type="number" name="idade" id="iidade" required>
+            </p>
+            <p>
+                <button>enviar</button>
+                <input type="reset" value="limpar">
+            </p>
+        </form>
+        <p id="exibirArray">
+
+        </p>
+    </main>
+</body>
+<script>
+    const pessoas = [];
+    function meuEscopo() {
+        const form = document.querySelector('.form');
+        
+        function receberEventoForm(evento) {
+            evento.preventDefault();
+            let nome = form.querySelector('#inome');
+            let sobrenome = form.querySelector('#isobrenome');
+            let peso = form.querySelector('#ipeso');
+            let idade = form.querySelector('#iidade');
+            pessoas.push({
+                nome: nome.value,
+                sobrenome: sobrenome.value,
+                peso: peso.value,
+                idade: idade.value
+            });
+            document.getElementById('exibirArray').innerHTML += `Nome:${nome.value} <br> Sobrenome: ${sobrenome.value} <br> Peso: ${peso.value} <br> Idade: ${idade.value} <br> <br>`
+        }
+        form.addEventListener('submit', receberEventoForm);
+    }
+    meuEscopo()
+</script>
+</html>
