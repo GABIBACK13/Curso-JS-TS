@@ -14,7 +14,7 @@ class CPF {
     })
   }
 
-  createDigit(array) {
+  static createDigit(array) {
     let control = array.length +2;
     
     const total = array.reduce((ac, value) => {
@@ -29,9 +29,9 @@ class CPF {
 
   createCPF() {
     let array = this.firstNumbers;
-    const digit01 = this.createDigit(array);
+    const digit01 = CPF.createDigit(array);
     array.push(digit01); 
-    const digit02 = this.createDigit(array);
+    const digit02 = CPF.createDigit(array);
     array.push(digit02);
     
     return array.reduce((ac, value) => ac += value);
@@ -44,3 +44,5 @@ class CPF {
     return this.createCPF() === this.inputedCPF;
   }
 }
+let c  = new CPF('111.111.111-11');
+console.log(c.check());
