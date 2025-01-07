@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Modelo</title>
+  <title>Gerador de senhas</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
 </head>
@@ -15,6 +15,31 @@
     <h1>Gerador de senhas Válidas</h1>
   </header>
   <section class="container">
+    <div>
+      <label for="senha">Senha</label>
+      <input type="text" id="senha" class="password-output" readonly>
+    </div>
+    <div>
+      <label for="tamanho">Tamanho</label>
+      <input type="number" id="tamanho" class="password-size" min="4" max="30" value="8">
+    </div>
+    <div>
+      <label for="maiusculas">Maiúsculas</label>
+      <input type="checkbox" id="maiusculas" class="password-uppercase" checked>
+    </div>
+    <div>
+      <label for="minusculas">Minúsculas</label>
+      <input type="checkbox" id="minusculas" class="password-lowercase">
+    </div>
+    <div>
+      <label for="numeros">Números</label>
+      <input type="checkbox" id="numeros" class="password-numbers">
+    </div>
+    <div>
+      <label for="simbolos">Símbolos</label>
+      <input type="checkbox" id="simbolos" class="password-symbols">
+    </div>
+
     <div class="btn-menu">
       <span class="material-symbols-outlined btn-menu-arrow">
         keyboard_arrow_down
@@ -22,7 +47,7 @@
     </div>
   </section>
   <div class="btn-menu-display">
-    <button class="btn1">fazer ação</button>
+    <button class="btn1">Gerar Senha</button>
   </div>
   <script src="assets/js/bundle.js"></script>
 </body>

@@ -1,7 +1,5 @@
 import './assets/css/style.css';
-import createPassword from './modules/geradores';
 
-// Animation for the menu //
 const container = document.querySelector('.container');
 (function () {
   let menuF = document.querySelector('.btn-menu');
@@ -20,6 +18,3 @@ const container = document.querySelector('.container');
     }
   });
 })();
-
-//service //
-

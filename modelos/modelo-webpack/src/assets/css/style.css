@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+:root {
+  /* complementar pattern colors */
+  --A1_primary_color: #042498;
+  --A2_primary_color: #fdba00;
+  --B1_secondary_color: #212F63;
+  --B2_secondary_color: #78601E;
+  --C1_neutral_center_color: #222633;
+  --C2_neutral_center_color: #38311C;
+  --Neutral: #efefe7;
+}
+ * {
+margin: 0;
+padding: 0;
+font-family: 'Open Sans', sans-serif;
+}
+
+header {
+  margin: auto;
+  padding: 25px;
+  text-align: center;
+  background-color: var(--B1_secondary_color);
+  color: var(--A2_primary_color);
+  border-bottom: 3px solid var(--B2_secondary_color);
+  box-sizing: border-box;
+  box-shadow: 0px 1px 4px var(--C2_neutral_center_color);
+}
+
+body {
+  background-color: var(--C1_neutral_center_color);
+  color: var(--Neutral);
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  padding: 16px;
+  margin: auto;
+  background-color: var(--B1_secondary_color);
+  border: 2px solid var(--B2_secondary_color);
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px var(--C2_neutral_center_color);
+}
+
+.btn-menu {
+  position: absolute;
+  text-align: center;
+  background-color: var(--C2_neutral_center_color);
+  border-radius: 0px 0px 8px 8px;
+  padding-top: 8px;
+  width: 100%;
+  top: 91.75%;
+  left: -0.08%;
+  cursor: pointer;
+}
+
+.btn-menu-display {
+  display: none;
+}
+
+.menu-active {
+  display: block;
+  text-align: center;
+  margin: -10px 64px;
+  padding: 8px;
+  border: 2px solid var(--B2_secondary_color);
+  border-radius: 0px 0px 8px 8px;
+  background-color: var(--C2_neutral_center_color);
+}
+
+.btn1 {
+  padding: 8px;
+  font-size: 1.2em;
+  color: var(--A2_primary_color);
+  background-color: var(--B1_secondary_color);
+  border: 2px solid var(--B2_secondary_color);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.container-active {
+  border-bottom: none;
+}
+
+/* smartphone media*/
+@media screen and (max-width: 768px) {
+  .container {
+    margin: 64px;
+    margin-bottom: 0px;
+    min-height: 60vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btn-menu {
+    display: none;
+  }
+  .btn-menu-display {
+    display: block;
+  }
+  .menu-active {
+    display: none;
+  }
+  .container {
+    width: 50%;
+    margin: 50px auto;
+    margin-bottom: 0px;
+    min-height: 60vh;
+  }
+}
