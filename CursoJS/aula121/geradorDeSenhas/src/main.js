@@ -23,3 +23,20 @@ const container = document.querySelector('.container');
 
 //service //
 
+const outputPassword = document.querySelector('.password-output');
+const size = document.querySelector('.password-size');
+const upercase = document.querySelector('.password-upercase');
+const lowercase = document.querySelector('.password-lowercase');
+const numbers = document.querySelector('.password-numbers');
+const special = document.querySelector('.password-symbols');
+
+window.document.querySelector('.btn1').addEventListener('click', () => {
+  let length = +size.value;
+  (length > 20) ? length = 20 : length;
+  const upercaseChecked = upercase.checked;
+  const lowercaseChecked = lowercase.checked;
+  const numbersChecked = numbers.checked;
+  const specialChecked = special.checked;
+
+  outputPassword.value = createPassword(length, upercaseChecked, lowercaseChecked, numbersChecked, specialChecked);
+});

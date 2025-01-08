@@ -89,6 +89,30 @@ body {
 .container-active {
   border-bottom: none;
 }
+.password-output, .password-size{
+  display: block;
+  margin: 10px auto;
+  padding: 4px;
+  font-size: 1.6em;
+  text-align: center;
+}
+.password-container label{
+  display: inline-block;
+  font-size: 1em;
+  padding: 8px;
+}
+.password-checkbox {
+  transform: scale(1.4);
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -ms-transform: scale(1.4); 
+  -o-transform: scale(1.4);
+}
+.password-checkboxes {
+  text-align: left;
+  margin: 10px auto;
+  margin-left: 32px;
+}
 
 /* smartphone media*/
 @media screen and (max-width: 768px) {
@@ -115,4 +139,5 @@ body {
     margin-bottom: 0px;
     min-height: 60vh;
   }
+  
 }

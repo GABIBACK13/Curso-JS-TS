@@ -14,30 +14,30 @@
   <header>
     <h1>Gerador de senhas Válidas</h1>
   </header>
-  <section class="container">
+  <section class="container password-container">
     <div>
       <label for="senha">Senha</label>
       <input type="text" id="senha" class="password-output" readonly>
     </div>
     <div>
       <label for="tamanho">Tamanho</label>
-      <input type="number" id="tamanho" class="password-size" min="4" max="30" value="8">
+      <input type="number" id="tamanho" class="password-size" min="4" max="20" placeholder="4-20">
     </div>
-    <div>
+    <div class="password-checkboxes">
+      <input type="checkbox" id="maiusculas" class="password-upercase password-checkbox" checked>
       <label for="maiusculas">Maiúsculas</label>
-      <input type="checkbox" id="maiusculas" class="password-uppercase" checked>
     </div>
-    <div>
+    <div class="password-checkboxes">
+      <input type="checkbox" id="minusculas" class="password-lowercase password-checkbox">
       <label for="minusculas">Minúsculas</label>
-      <input type="checkbox" id="minusculas" class="password-lowercase">
     </div>
-    <div>
+    <div class="password-checkboxes">
+      <input type="checkbox" id="numeros" class="password-numbers password-checkbox">
       <label for="numeros">Números</label>
-      <input type="checkbox" id="numeros" class="password-numbers">
     </div>
-    <div>
+    <div class="password-checkboxes">
+      <input type="checkbox" id="simbolos" class="password-symbols password-checkbox">
       <label for="simbolos">Símbolos</label>
-      <input type="checkbox" id="simbolos" class="password-symbols">
     </div>
 
     <div class="btn-menu">
