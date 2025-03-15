@@ -1,0 +1,12 @@
+{
+  "name": "typescriptsection",
+  "version": "1.0.0",
+  "description": "A sectoin of study and lern more about Typescript.   --full-stack-course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Gabriel Luis Back",
+  "license": "MIT"
+}
