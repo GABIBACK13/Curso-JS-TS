@@ -27,13 +27,15 @@ export default class FormValidator {
   errors: FormErrors[];
   user: User | null;
   errorClass: string;
+  errorDisplay: string;
   form: HTMLFormElement;
 
-  constructor(formClass: string, errorClass: string) {
+  constructor(formClass: string, errorClass: string, errorDisplay: string) {
     (this.req = null),
       (this.errors = []),
       (this.user = null),
       (this.errorClass = errorClass),
+      (this.errorDisplay = errorDisplay),
       (this.form = document.querySelector(formClass) as HTMLFormElement);
   }
 
@@ -54,31 +56,10 @@ export default class FormValidator {
         this.send();
         return;
       }
-      try {
-        this.errors.forEach((err) => {
-          switch (true) {
-            case err.origin === "name":
-              this.showErrors("input[name='username']", err.message);
-              break;
 
-            case err.origin === "email":
-              this.showErrors("input[name='email']", err.message);
-              break;
-
-            case err.origin === "password":
-              this.showErrors("input[name='password']", err.message);
-              break;
-
-            case err.origin === "password-confirm":
-              this.showErrors(".password", err.message, true);
-              break;
-            default:
-              break;
-          }
-        });
-      } catch (error) {
-        console.error(error);
-      }
+      this.cleanErrors();
+      this.spreadErrors();
+      this.errors = [];
     });
     return;
   }
@@ -136,22 +117,51 @@ export default class FormValidator {
     };
   }
 
-  public showErrors(query: string, msg: string, selectAll?: boolean): void {
-    if (selectAll) {
-      this.form.querySelectorAll(query).forEach((input) => {
-        const div = input.parentNode as HTMLDivElement;
-        div.classList.toggle(this.errorClass);
-
-        const errorDisplay = div.querySelector(".error-message");
-        if (errorDisplay) errorDisplay.innerHTML = msg;
-      });
-    }
-
+  public showErrors(query: string, msg: string): void {
     const div = this.form.querySelector(query)?.parentNode as HTMLDivElement;
-    div.classList.toggle(this.errorClass);
+    div.classList.toggle(this.errorClass, true);
 
-    const errorDisplay = div.querySelector(".error-message");
-    if (errorDisplay) errorDisplay.innerHTML = msg;
+    const errorDisplay = div.querySelector(this.errorDisplay);
+    if (errorDisplay) errorDisplay.innerHTML += `${msg}`;
+  }
+
+  public cleanErrors(): void {
+    this.form
+      .querySelectorAll(`.${this.errorClass}`)
+      .forEach((element) => element.classList.toggle(this.errorClass, false));
+
+    this.form.querySelectorAll(this.errorDisplay).forEach((element) => {
+      element.innerHTML = "";
+    });
+  }
+
+  private spreadErrors(): void {
+    try {
+      this.errors.forEach((err) => {
+        switch (true) {
+          case err.origin === "name":
+            this.showErrors("input[name='username']", err.message);
+            break;
+
+          case err.origin === "email":
+            this.showErrors("input[name='email']", err.message);
+            break;
+
+          case err.origin === "password":
+            this.showErrors("input[name='password']", err.message);
+            break;
+
+          case err.origin === "password-confirm":
+            this.showErrors("input[name='password']", err.message);
+            this.showErrors("input[name='passwordConfirm']", err.message);
+            break;
+          default:
+            break;
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   public send(): void {

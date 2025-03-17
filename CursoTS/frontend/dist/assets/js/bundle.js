@@ -7387,11 +7387,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const validator_1 = __importDefault(__webpack_require__(/*! validator */ "./node_modules/validator/index.js"));
 class FormValidator {
-    constructor(formClass, errorClass) {
+    constructor(formClass, errorClass, errorDisplay) {
         (this.req = null),
             (this.errors = []),
             (this.user = null),
             (this.errorClass = errorClass),
+            (this.errorDisplay = errorDisplay),
             (this.form = document.querySelector(formClass));
     }
     init() {
@@ -7410,29 +7411,9 @@ class FormValidator {
                 this.send();
                 return;
             }
-            try {
-                this.errors.forEach((err) => {
-                    switch (true) {
-                        case err.origin === "name":
-                            this.showErrors("input[name='username']", err.message);
-                            break;
-                        case err.origin === "email":
-                            this.showErrors("input[name='email']", err.message);
-                            break;
-                        case err.origin === "password":
-                            this.showErrors("input[name='password']", err.message);
-                            break;
-                        case err.origin === "password-confirm":
-                            this.showErrors(".password", err.message, true);
-                            break;
-                        default:
-                            break;
-                    }
-                });
-            }
-            catch (error) {
-                console.error(error);
-            }
+            this.cleanErrors();
+            this.spreadErrors();
+            this.errors = [];
         });
         return;
     }
@@ -7479,22 +7460,47 @@ class FormValidator {
             passwordConfirm: bodyReq.passwordConfirm,
         };
     }
-    showErrors(query, msg, selectAll) {
+    showErrors(query, msg) {
         var _a;
-        if (selectAll) {
-            this.form.querySelectorAll(query).forEach((input) => {
-                const div = input.parentNode;
-                div.classList.toggle(this.errorClass);
-                const errorDisplay = div.querySelector(".error-message");
-                if (errorDisplay)
-                    errorDisplay.innerHTML = msg;
+        const div = (_a = this.form.querySelector(query)) === null || _a === void 0 ? void 0 : _a.parentNode;
+        div.classList.toggle(this.errorClass, true);
+        const errorDisplay = div.querySelector(this.errorDisplay);
+        if (errorDisplay)
+            errorDisplay.innerHTML += `${msg}`;
+    }
+    cleanErrors() {
+        this.form
+            .querySelectorAll(`.${this.errorClass}`)
+            .forEach((element) => element.classList.toggle(this.errorClass, false));
+        this.form.querySelectorAll(this.errorDisplay).forEach((element) => {
+            element.innerHTML = "";
+        });
+    }
+    spreadErrors() {
+        try {
+            this.errors.forEach((err) => {
+                switch (true) {
+                    case err.origin === "name":
+                        this.showErrors("input[name='username']", err.message);
+                        break;
+                    case err.origin === "email":
+                        this.showErrors("input[name='email']", err.message);
+                        break;
+                    case err.origin === "password":
+                        this.showErrors("input[name='password']", err.message);
+                        break;
+                    case err.origin === "password-confirm":
+                        this.showErrors("input[name='password']", err.message);
+                        this.showErrors("input[name='passwordConfirm']", err.message);
+                        break;
+                    default:
+                        break;
+                }
             });
         }
-        const div = (_a = this.form.querySelector(query)) === null || _a === void 0 ? void 0 : _a.parentNode;
-        div.classList.toggle(this.errorClass);
-        const errorDisplay = div.querySelector(".error-message");
-        if (errorDisplay)
-            errorDisplay.innerHTML = msg;
+        catch (error) {
+            console.error(error);
+        }
     }
     send() {
         console.log("form send successfully");
@@ -7518,7 +7524,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const formValidator_1 = __importDefault(__webpack_require__(/*! ./formValidator */ "./src/formValidator.ts"));
-const formControl = new formValidator_1.default(".form", "show-error-message");
+const formControl = new formValidator_1.default(".form", "show-error-message", '.error-message');
+formControl.init();
 
 
 /***/ })
