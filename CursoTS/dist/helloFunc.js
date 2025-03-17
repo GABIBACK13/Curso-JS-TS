@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = () => {
-    console.log('hello world');
+exports.default = (txt) => {
+    console.log(txt);
 };

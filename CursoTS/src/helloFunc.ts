@@ -1,4 +1,4 @@
 
-export default () => {
-  console.log('hello world');
+export default (txt: string): void => {
+  console.log(txt);
 };
