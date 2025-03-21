@@ -1,8 +1,11 @@
 const path = require("path");
 
 module.exports = {
-  mode: 'development',
-  entry: "./src/index.ts",
+  mode: "development",
+  entry: {
+    formControl: "./src/formValidator/index.ts",
+    toggleSystem: "./src/toggleSystem/index.ts",
+  },
   module: {
     rules: [
       {
@@ -16,7 +19,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist", "assets", "js"),
   },
   devtool: "source-map",

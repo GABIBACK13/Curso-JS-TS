@@ -7374,10 +7374,10 @@ module.exports["default"] = exports.default;
 
 /***/ }),
 
-/***/ "./src/formValidator.ts":
-/*!******************************!*\
-  !*** ./src/formValidator.ts ***!
-  \******************************/
+/***/ "./src/formValidator/formValidator.ts":
+/*!********************************************!*\
+  !*** ./src/formValidator/formValidator.ts ***!
+  \********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -7512,10 +7512,10 @@ exports["default"] = FormValidator;
 
 /***/ }),
 
-/***/ "./src/index.ts":
-/*!**********************!*\
-  !*** ./src/index.ts ***!
-  \**********************/
+/***/ "./src/formValidator/index.ts":
+/*!************************************!*\
+  !*** ./src/formValidator/index.ts ***!
+  \************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -7523,7 +7523,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const formValidator_1 = __importDefault(__webpack_require__(/*! ./formValidator */ "./src/formValidator.ts"));
+const formValidator_1 = __importDefault(__webpack_require__(/*! ./formValidator */ "./src/formValidator/formValidator.ts"));
 const formControl = new formValidator_1.default(".form", "show-error-message", '.error-message');
 formControl.init();
 
@@ -7561,8 +7561,8 @@ formControl.init();
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.ts");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/formValidator/index.ts");
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=bundle.js.map
+//# sourceMappingURL=formControl.bundle.js.map
